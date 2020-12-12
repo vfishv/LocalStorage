@@ -13,8 +13,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.content.withStyledAttributes
-import androidx.core.widget.toast
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
@@ -102,7 +102,7 @@ class DonateDialogFragment : DialogFragment() {
         }
         viewModel.purchaseCompletedCallback = { responseCode ->
             if (responseCode == BillingClient.BillingResponse.OK) {
-                requireContext().toast(R.string.donate_thank_you)
+                Toast.makeText(requireContext(), R.string.donate_thank_you, Toast.LENGTH_SHORT).show()
             }
             dismiss()
         }
