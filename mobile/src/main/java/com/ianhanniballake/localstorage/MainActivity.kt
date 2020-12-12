@@ -21,7 +21,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewSwitcher
-import androidx.core.database.getString
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -196,7 +195,7 @@ class MainActivity : AppCompatActivity() {
                 lastReturnedDocumentTreeUri = null
                 // Note it's called "Display Name".  This is
                 // provider-specific, and might not necessarily be the file name.
-                val displayName = cursor.getString(OpenableColumns.DISPLAY_NAME)
+                val displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
                 returnedName.text = displayName
                 returnedImage.setImageURI(documentUri)
                 returnedImage.contentDescription = displayName
@@ -221,7 +220,7 @@ class MainActivity : AppCompatActivity() {
                     lastReturnedDocumentTreeUri = treeUri
                     // Note it's called "Display Name".  This is
                     // provider-specific, and might not necessarily be the file name.
-                    cursor.getString(OpenableColumns.DISPLAY_NAME)
+                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
                 }
                 else -> null
             }
@@ -242,7 +241,7 @@ class MainActivity : AppCompatActivity() {
             while (cursor.moveToNext()) {
                 // Note it's called "Display Name".  This is
                 // provider-specific, and might not necessarily be the file name.
-                val displayName = cursor.getString(OpenableColumns.DISPLAY_NAME)
+                val displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
                 children.append(displayName)
                 if (!cursor.isLast) {
                     children.append('\n')
